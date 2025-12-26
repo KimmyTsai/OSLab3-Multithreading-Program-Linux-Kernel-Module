@@ -20,12 +20,10 @@ static ssize_t Mywrite(struct file *fileptr, const char __user *ubuf, size_t buf
     copy_from_user(buf, ubuf, buffer_len);
     
     len = sprintf(buf+buffer_len, "PID: %d, TID: %d, time: %lld\n", 
-                        current->tgid, current->pid, 
-                        current->utime/100/1000);
+                        current->tgid, current->pid, current->utime/100/1000);
     // printk("My_Kernel: Data from the user: %s\n", buf);
     *offset += buffer_len;
     *offset += len;
-    buffer_len += len;
     return len;
     /****************/
 }
